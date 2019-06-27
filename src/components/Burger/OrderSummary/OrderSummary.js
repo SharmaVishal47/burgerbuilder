@@ -1,8 +1,9 @@
 import React from 'react';
-import Auxiliary from '../../../hoc/Auxiliary'
+import Auxiliary from '../../../hoc/Auxiliary';
+import Button from '../../UI/Button/Button';
 
 const orderSummary = (props) => {
-    const ingredientSummry = Object.keys(props.ingredients)
+    const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
             return (
                 <li key={igKey}>
@@ -14,13 +15,16 @@ const orderSummary = (props) => {
 
         <Auxiliary>
             <h3>Your Order</h3>
-            <p>A delicious buger with the following ingredients:</p>
+            <p>A delicious burger with the following ingredients:</p>
             <ul>
-                {ingredientSummry}
+                {ingredientSummary}
             </ul>
+            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
             <p>
                 Continue to CheckOut?
             </p>
+            <Button btnType="Danger" clicked={props.purchaeCancelled}>CANCEL</Button>
+            <Button btnType="Success" clicked={props.purchaeContinued}>CONTINUE</Button>
         </Auxiliary>
     )
 };
